@@ -26,10 +26,22 @@ def Proc_Svinet(Net):
         Output.update([str(Nodes[line_s[0]]) + '\t' + str(Nodes[line_s[1]]) + '\n'])
         # print Output
 
+    # Enable repetitions
+    # with open('pp_networks_rep.txt', 'w') as O:
+    #     for line in Input_Net[1:]:
+    #         line_s = line.split('\t')
+    #         if line_s[0] not in Nodes:
+    #             Nodes[line_s[0]] = node_counter
+    #             node_counter += 1
+    #         if line_s[1] not in Nodes:
+    #             Nodes[line_s[1]] = node_counter
+    #             node_counter += 1
+    #         O.write(str(Nodes[line_s[0]]) + '\t' + str(Nodes[line_s[1]]) + '\n')
+
     # Need to know number of nodes for Svinet, checked 5197 for pp network and 1494 for 1912.edges
     print node_counter - 1
 
-    # Output = sorted(Output)
+    Output = sorted(Output)
 
     with open('pp_networks_num.txt', 'w') as O:
         for edge in Output:
@@ -37,4 +49,4 @@ def Proc_Svinet(Net):
 
 
 if __name__ == '__main__':
-    Proc_Svinet('networks.txt')
+    Proc_Svinet('network.txt')
