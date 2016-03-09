@@ -19,11 +19,11 @@ def Proc_Svinet(Net):
         if line_s[0] not in Nodes:
             Nodes[line_s[0]] = node_counter
             node_counter += 1
-        if line_s[1] not in Nodes:
-            Nodes[line_s[1]] = node_counter
+        if line_s[1][:-1] not in Nodes:
+            Nodes[line_s[1][:-1]] = node_counter
             node_counter += 1
         # print str(Nodes[line_s[0]]) + '\t' + str(Nodes[line_s[1]]) + '\n'
-        Output.update([str(Nodes[line_s[0]]) + '\t' + str(Nodes[line_s[1]]) + '\n'])
+        Output.update([str(Nodes[line_s[0]]) + '\t' + str(Nodes[line_s[1][:-1]]) + '\n'])
         # print Output
 
     # Enable repetitions
@@ -38,7 +38,7 @@ def Proc_Svinet(Net):
     #             node_counter += 1
     #         O.write(str(Nodes[line_s[0]]) + '\t' + str(Nodes[line_s[1]]) + '\n')
 
-    # Need to know number of nodes for Svinet, checked 5197 for pp network and 1494 for 1912.edges
+    # Need to know number of nodes for Svinet, checked 3610 (5197 wrong) for pp network and 1494 for 1912.edges
     print node_counter - 1
 
     Output = sorted(Output)
