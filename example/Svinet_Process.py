@@ -1,3 +1,4 @@
+
 '''
 Process protein networks for Svinet
 Essentially the same as CESNA_Process, but displays number of nodes
@@ -12,14 +13,16 @@ def Proc_Svinet(Net):
 
     Nodes = {}
 
-    # Use set to prevent repetitions
+    # Use set to catch repetitions
     Output = set()
 
     for line in Input_Net[1:]:
         line_s = line.split('\t')
+        # Checks if the nodes are in the dictionary
         if line_s[0] not in Nodes:
             Nodes[line_s[0]] = node_counter
             node_counter += 1
+        # To account for '\n's at the end
         if line_s[1][:-1] not in Nodes:
             Nodes[line_s[1][:-1]] = node_counter
             node_counter += 1
@@ -46,7 +49,7 @@ def Proc_Svinet(Net):
         for edge in Output:
             O.write(edge)
 
-# Detected 7 for pp network and 16 for 1912.edge
+# Detected 11 for pp network and 16 for 1912.edge
 
 def ReMap_Communities(Net, Comm):
     # Get dictionary of proteins and numbers
@@ -86,8 +89,7 @@ def ReMap_Communities(Net, Comm):
     # Remap
     for i in range(0, Num_Comm):
         line_s = Input_Comm[i].split(' ')
-        for node in line_s:
-            # print i
+        for node in line_s[:-1]:
             Comm[i].append(Nodes_Rev[int(node)])
 
     with open('RCommunities_' + str(Num_Comm) + '.txt', 'w') as O:
@@ -96,5 +98,5 @@ def ReMap_Communities(Net, Comm):
 
 
 if __name__ == '__main__':
-    Proc_Svinet('network.txt')
-    # ReMap_Communities('network.txt', 'communities.txt')
+    # Proc_Svinet('network.txt')
+    ReMap_Communities('network.txt', 'communities.txt')
