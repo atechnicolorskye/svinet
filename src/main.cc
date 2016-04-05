@@ -39,10 +39,10 @@ term_handler(int sig)
   }
 }
 
-int 
+int
 main(int argc, char **argv)
 {
-  
+
   signal(SIGTERM, term_handler);
 
   bool run_gap = false;
@@ -61,12 +61,12 @@ main(int argc, char **argv)
   bool online = true;
   bool link_sampling = false;
   bool nodelay = true;
-  bool load = false; 
+  bool load = false;
   bool val_load = false;
   string val_file_location = "";
   bool test_load = false;
   string test_file_location = "";
-  bool adamic_adar = false; 
+  bool adamic_adar = false;
   string location = "";
   uint32_t scale = 1;
   bool disjoint = false;
@@ -110,7 +110,7 @@ main(int argc, char **argv)
     usage();
     exit(-1);
   }
-  
+
   while (i <= argc - 1) {
     if (strcmp(argv[i], "-help") == 0) {
       usage();
@@ -243,20 +243,20 @@ main(int argc, char **argv)
 
   assert (!(batch && online));
 
-  Env env(n, k, massive, single, batch, stratified, 
-	  nodelay, rpair, rnode, 
-	  load, location, 
-	  val_load, val_file_location, 
+  Env env(n, k, massive, single, batch, stratified,
+	  nodelay, rpair, rnode,
+	  load, location,
+	  val_load, val_file_location,
 	  test_load, test_file_location,
 	  load_test_sets_opt,
 	  hol_ratio,
 	  adamic_adar,
 	  scale, disjoint,
-	  force_overwrite_dir, datfname, 
+	  force_overwrite_dir, datfname,
 	  ppc, run_gap, gen, label, nthreads, itype, eta_type,
-	  nmi, ground_truth_fname, rfreq, 
-	  accuracy, stopthresh, infthresh, 
-	  nonuniform, bmark, randzeros, preprocess, 
+	  nmi, ground_truth_fname, rfreq,
+	  accuracy, stopthresh, infthresh,
+	  nonuniform, bmark, randzeros, preprocess,
 	  strid, groups_file, logl,
 	  max_iterations, use_validation_stop, rand_seed,
 	  link_thresh, lt_min_deg,
@@ -284,8 +284,8 @@ main(int argc, char **argv)
     fprintf(stderr, "error reading %s; quitting\n", datfname.c_str());
     return -1;
   }
-  info("+ network: n = %d, ones = %d, singles = %d\n", 
-	  network.n(), 
+  info("+ network: n = %d, ones = %d, singles = %d\n",
+	  network.n(),
 	  network.ones(), network.singles());
 
   env.n = network.n() - network.singles();
@@ -340,7 +340,7 @@ main(int argc, char **argv)
     ls.infer();
     exit(0);
   }
-  
+
   if (single) {
     SBM sbm(env, network);
     info("+ running stochastic blockmodel inference\n");
@@ -350,7 +350,7 @@ main(int argc, char **argv)
       sbm.infer();
     exit(0);
   }
-  
+
   if (batch) {
     MMSBInfer mmsb(env, network);
     info("+ running mmsb batch inference\n");
@@ -363,8 +363,8 @@ main(int argc, char **argv)
     info("+ running mmsb inference (with infset network option)\n");
     fastamm.infer();
     exit(0);
-  } 
-  
+  }
+
   if (stratified && rnode) {
     FastAMM2 fastamm2(env, network);
     info("+ running mmsb inference (with stratified random node option)\n");
@@ -415,7 +415,7 @@ test()
   f.update(2, 15);
   f.update(3, 3);
   f.update(4, 1);
-  
+
   double v = .0;
   f.find(0, v);
   printf("key:%d,val:%.3f\n", 0, v);
