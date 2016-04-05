@@ -41,11 +41,12 @@ def Proc_Svinet(Net):
     #         O.write(str(Nodes[line_s[0]]) + '\t' + str(Nodes[line_s[1]]) + '\n')
 
     # Need to know number of nodes for Svinet, checked 3611 (5197 wrong) for pp network and 1494 for 1912.edges
+    # 35061 for textiq
     print node_counter
 
     Output = sorted(Output)
 
-    with open('pp_networks_num.txt', 'w') as O:
+    with open('network_textiq_num.txt', 'w') as O:
         for edge in Output:
             O.write(edge)
 
@@ -98,5 +99,5 @@ def ReMap_Communities(Net, Comm):
 
 
 if __name__ == '__main__':
-    # Proc_Svinet('network.txt')
-    ReMap_Communities('network.txt', 'communities.txt')
+    Proc_Svinet('network_textiq.txt')
+    # ReMap_Communities('network.txt', 'communities.txt')
